@@ -27,9 +27,9 @@ In the roster list, they have indices 2, 9, 10, 15, 19, and 24.
 
 ## Rubric
 
-Run the tests to verify that your program is correct. It should print out the old roster, then the new roster.
+Run your code and see for yourself that the program works. The tests can help check your work, but they aren't perfect.
 
-You should also run your code and see for yourself that the program works. The tests can help check your work, but they aren't perfect.
+Run the tests to verify that your program is correct. It should print out the old roster, then the new roster.
 
 ## Expected Results
 
