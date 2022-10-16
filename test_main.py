@@ -8,12 +8,13 @@ class Test(TestCase):
     def test_output(self):
         with patch('sys.stdout', new=io.StringIO()) as mock_stdout:
             import main
-            lines = mock_stdout.getvalue().split("\n")
-            self.assertEqual(lines[1], "The current Real Madrid roster:") 
-            self.assertEqual(lines[3], "Thibaut Courtois") 
-            self.assertEqual(lines[35], "The new Real Madrid roster:") 
-            self.assertEqual(lines[37], "Thibaut Courtois") 
-            self.assertEqual("\n".join(lines[37:-1]), """Thibaut Courtois
+            try:
+                lines = mock_stdout.getvalue().split("\n")
+                self.assertEqual(lines[1], "The current Real Madrid roster:") 
+                self.assertEqual(lines[3], "Thibaut Courtois") 
+                self.assertEqual(lines[35], "The new Real Madrid roster:") 
+                self.assertEqual(lines[37], "Thibaut Courtois") 
+                self.assertIn("""Thibaut Courtois
 Dani Carvajal
 Éder Militão
 Jesús Vallejo
@@ -37,8 +38,9 @@ Isco
 Ferland Mendy
 Mariano
 Eduardo Camavinga
-David Alaba""")
-            sys.modules.pop('main')
+David Alaba""", "\n".join(lines))
+            finally:
+                sys.modules.pop('main')
 
 if __name__ == '__main__':
     unittest.main()
