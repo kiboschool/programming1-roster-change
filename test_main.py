@@ -14,7 +14,7 @@ class Test(TestCase):
                 self.assertEqual(lines[3], "Thibaut Courtois") 
                 self.assertEqual(lines[35], "The new Real Madrid roster:") 
                 self.assertEqual(lines[37], "Thibaut Courtois") 
-                self.assertIn("""Thibaut Courtois
+                correct_output = """Thibaut Courtois
 Dani Carvajal
 Éder Militão
 Jesús Vallejo
@@ -38,7 +38,12 @@ Isco
 Ferland Mendy
 Mariano
 Eduardo Camavinga
-David Alaba""", "\n".join(lines))
+David Alaba"""
+
+                correct_lines = correct_output.split("\n")
+                for i, line in enumerate(lines[37:-2]):
+                    self.assertEqual(line, correct_lines[i])
+
             finally:
                 sys.modules.pop('main')
 
